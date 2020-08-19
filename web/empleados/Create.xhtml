@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EmpleadosCreateDlg" widgetVar="EmpleadosCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateEmpleadosTitle}">
+            <h:form id="EmpleadosCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{empleadosController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateEmpleadosLabel_legajo}" for="legajo" />
+                        <p:inputText id="legajo" value="#{empleadosController.selected.legajo}" title="#{bundle.CreateEmpleadosTitle_legajo}" required="true" requiredMessage="#{bundle.CreateEmpleadosRequiredMessage_legajo}"/>
+                        <p:outputLabel value="#{bundle.CreateEmpleadosLabel_documento}" for="documento" />
+                        <p:inputText id="documento" value="#{empleadosController.selected.documento}" title="#{bundle.CreateEmpleadosTitle_documento}" />
+                        <p:outputLabel value="#{bundle.CreateEmpleadosLabel_sexo}" for="sexo" />
+                        <p:inputText id="sexo" value="#{empleadosController.selected.sexo}" title="#{bundle.CreateEmpleadosTitle_sexo}" />
+                        <p:outputLabel value="#{bundle.CreateEmpleadosLabel_apellido}" for="apellido" />
+                        <p:inputText id="apellido" value="#{empleadosController.selected.apellido}" title="#{bundle.CreateEmpleadosTitle_apellido}" />
+                        <p:outputLabel value="#{bundle.CreateEmpleadosLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{empleadosController.selected.nombre}" title="#{bundle.CreateEmpleadosTitle_nombre}" />
+                        <p:outputLabel value="#{bundle.CreateEmpleadosLabel_domicilio}" for="domicilio" />
+                        <p:inputText id="domicilio" value="#{empleadosController.selected.domicilio}" title="#{bundle.CreateEmpleadosTitle_domicilio}" />
+                        <p:outputLabel value="#{bundle.CreateEmpleadosLabel_seccion}" for="seccion" />
+                        <p:inputText id="seccion" value="#{empleadosController.selected.seccion}" title="#{bundle.CreateEmpleadosTitle_seccion}" required="true" requiredMessage="#{bundle.CreateEmpleadosRequiredMessage_seccion}"/>
+                        <p:outputLabel value="#{bundle.CreateEmpleadosLabel_cantidadhijos}" for="cantidadhijos" />
+                        <p:inputText id="cantidadhijos" value="#{empleadosController.selected.cantidadhijos}" title="#{bundle.CreateEmpleadosTitle_cantidadhijos}" />
+                        <p:outputLabel value="#{bundle.CreateEmpleadosLabel_estadocivil}" for="estadocivil" />
+                        <p:inputText id="estadocivil" value="#{empleadosController.selected.estadocivil}" title="#{bundle.CreateEmpleadosTitle_estadocivil}" />
+                        <p:outputLabel value="#{bundle.CreateEmpleadosLabel_fechaingreso}" for="fechaingreso" />
+                        <p:calendar id="fechaingreso" pattern="MM/dd/yyyy" value="#{empleadosController.selected.fechaingreso}" title="#{bundle.EditEmpleadosTitle_fechaingreso}"  showOn="button"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{empleadosController.create}" value="#{bundle.Save}" update="display,:EmpleadosListForm:datalist,:growl" oncomplete="handleSubmit(args,'EmpleadosCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="EmpleadosCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

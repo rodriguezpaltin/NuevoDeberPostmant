@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SeccionesCreateDlg" widgetVar="SeccionesCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateSeccionesTitle}">
+            <h:form id="SeccionesCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{seccionesController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateSeccionesLabel_codigo}" for="codigo" />
+                        <p:inputText id="codigo" value="#{seccionesController.selected.codigo}" title="#{bundle.CreateSeccionesTitle_codigo}" required="true" requiredMessage="#{bundle.CreateSeccionesRequiredMessage_codigo}"/>
+                        <p:outputLabel value="#{bundle.CreateSeccionesLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{seccionesController.selected.nombre}" title="#{bundle.CreateSeccionesTitle_nombre}" />
+                        <p:outputLabel value="#{bundle.CreateSeccionesLabel_sueldo}" for="sueldo" />
+                        <p:inputText id="sueldo" value="#{seccionesController.selected.sueldo}" title="#{bundle.CreateSeccionesTitle_sueldo}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{seccionesController.create}" value="#{bundle.Save}" update="display,:SeccionesListForm:datalist,:growl" oncomplete="handleSubmit(args,'SeccionesCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="SeccionesCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

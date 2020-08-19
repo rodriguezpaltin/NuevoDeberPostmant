@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AlumnosCreateDlg" widgetVar="AlumnosCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateAlumnosTitle}">
+            <h:form id="AlumnosCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{alumnosController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateAlumnosLabel_documento}" for="documento" />
+                        <p:inputText id="documento" value="#{alumnosController.selected.documento}" title="#{bundle.CreateAlumnosTitle_documento}" required="true" requiredMessage="#{bundle.CreateAlumnosRequiredMessage_documento}"/>
+                        <p:outputLabel value="#{bundle.CreateAlumnosLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{alumnosController.selected.nombre}" title="#{bundle.CreateAlumnosTitle_nombre}" />
+                        <p:outputLabel value="#{bundle.CreateAlumnosLabel_nota}" for="nota" />
+                        <p:inputText id="nota" value="#{alumnosController.selected.nota}" title="#{bundle.CreateAlumnosTitle_nota}" />
+                        <p:outputLabel value="#{bundle.CreateAlumnosLabel_codigoprofesor}" for="codigoprofesor" />
+                        <p:inputText id="codigoprofesor" value="#{alumnosController.selected.codigoprofesor}" title="#{bundle.CreateAlumnosTitle_codigoprofesor}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{alumnosController.create}" value="#{bundle.Save}" update="display,:AlumnosListForm:datalist,:growl" oncomplete="handleSubmit(args,'AlumnosCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="AlumnosCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
